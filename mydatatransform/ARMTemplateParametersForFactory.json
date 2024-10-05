@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "mydatatransform"
+		},
+		"ls_adls_gen2_accountKey": {
+			"value": ""
+		},
+		"ls_onprem_sql__password": {
+			"value": ""
+		},
+		"ls_onprem_sql_server_AdventureWorksLT2022_password": {
+			"value": ""
+		},
+		"ls_adls_gen2_properties_typeProperties_url": {
+			"value": "https://nataadlsstorage.dfs.core.windows.net/"
+		},
+		"ls_onprem_sql__properties_typeProperties_server": {
+			"value": "YASH"
+		},
+		"ls_onprem_sql__properties_typeProperties_database": {
+			"value": "tpcxbb_1gb"
+		},
+		"ls_onprem_sql__properties_typeProperties_userName": {
+			"value": "Nataraj"
+		},
+		"ls_onprem_sql_server_AdventureWorksLT2022_properties_typeProperties_server": {
+			"value": "YASH"
+		},
+		"ls_onprem_sql_server_AdventureWorksLT2022_properties_typeProperties_database": {
+			"value": "AdventureWorksLT2022"
+		},
+		"ls_onprem_sql_server_AdventureWorksLT2022_properties_typeProperties_userName": {
+			"value": "Nataraj"
+		}
+	}
+}
