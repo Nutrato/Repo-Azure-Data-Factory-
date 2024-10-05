@@ -1,0 +1,34 @@
+{
+	"name": "ds_src_latest_file_copy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Folder_Name": {
+				"type": "string"
+			},
+			"File_Name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().File_Name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('tpcxbb_1gb/',dataset().Folder_Name)",
+					"type": "Expression"
+				},
+				"fileSystem": "rawdata01"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

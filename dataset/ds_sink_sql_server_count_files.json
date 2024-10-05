@@ -1,0 +1,13 @@
+{
+	"name": "ds_sink_sql_server_count_files",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_onprem_sql_server_AdventureWorksLT2022",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

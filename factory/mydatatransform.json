@@ -1,0 +1,9 @@
+{
+	"name": "mydatatransform",
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "319abf19-5534-426f-9bbc-b6e29544ef56",
+		"tenantId": "b33423be-14c8-49e6-bc96-dd335dace4d1"
+	}
+}

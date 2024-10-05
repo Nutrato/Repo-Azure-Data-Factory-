@@ -1,0 +1,26 @@
+{
+	"name": "ds_sink_folder_details",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_onprem_sql_server_AdventureWorksLT2022",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "empty_folders",
+				"type": "varchar"
+			},
+			{
+				"name": "non_empty_folders",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "folderdetails"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
