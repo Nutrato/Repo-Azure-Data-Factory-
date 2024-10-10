@@ -63,7 +63,7 @@
 								"source": {
 									"type": "SqlServerSource",
 									"sqlReaderQuery": {
-										"value": "@concat('select ', item().waterMarkColumn, ' from ', item().sourceTableName, ' order by ', item().waterMarkColumn, ' desc limit 1')\n",
+										"value": "@concat('select top 1 ', item().waterMarkColumn, ' from ', item().sourceTableName, ' order by ', item().waterMarkColumn, ' desc')\n",
 										"type": "Expression"
 									},
 									"queryTimeout": "02:00:00",
