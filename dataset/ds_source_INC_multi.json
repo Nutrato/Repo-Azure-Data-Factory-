@@ -1,0 +1,12 @@
+{
+	"name": "ds_source_INC_multi",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_onprem_SalesDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}

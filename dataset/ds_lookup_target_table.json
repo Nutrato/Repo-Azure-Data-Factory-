@@ -1,0 +1,12 @@
+{
+	"name": "ds_lookup_target_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_onprem_SalesDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
