@@ -1,6 +1,5 @@
 {
 	"name": "ls_onprem_sql_",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "SqlServer",
@@ -11,11 +10,19 @@
 			"trustServerCertificate": true,
 			"authenticationType": "SQL",
 			"userName": "Nataraj",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1N2NjNjQwMS1jZDc4LTRiZjItYTVlZS04MGQwZjBmZGRiYzQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_keyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sqlDbpassword"
+			}
 		},
 		"connectVia": {
 			"referenceName": "onpremintegrationRuntime1",
 			"type": "IntegrationRuntimeReference"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
