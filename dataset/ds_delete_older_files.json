@@ -1,0 +1,23 @@
+{
+	"name": "ds_delete_older_files",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"file_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "tpcxbb_1gb/customer_book_clusters",
+				"fileSystem": "rawdata01"
+			}
+		}
+	}
+}
