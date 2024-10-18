@@ -1,6 +1,5 @@
 {
 	"name": "MySql1",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "MySql",
@@ -11,8 +10,16 @@
 			"username": "sql12738552",
 			"sslMode": 1,
 			"useSystemTrustStore": 1,
-			"driverVersion": "v2",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDdBNzIwMzQyLTg1M0YtNEU3My04NDhELUZBQzgzNTQ3NEE3OF9kY2JlYjU1Ny0yYTM4LTRmMzAtYmJkYi00NzZlZmMyYWYzM2IiDQp9"
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_keyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "mysqlDBPass"
+			},
+			"driverVersion": "v2"
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
