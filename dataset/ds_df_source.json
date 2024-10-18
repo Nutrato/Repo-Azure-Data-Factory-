@@ -1,0 +1,77 @@
+{
+	"name": "ds_df_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_gen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "customer_address.csv",
+				"folderPath": "tpcxbb_1gb/customer_address",
+				"fileSystem": "rawdata01"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "ca_address_sk",
+				"type": "String"
+			},
+			{
+				"name": "ca_address_id",
+				"type": "String"
+			},
+			{
+				"name": "ca_street_number",
+				"type": "String"
+			},
+			{
+				"name": "ca_street_name",
+				"type": "String"
+			},
+			{
+				"name": "ca_street_type",
+				"type": "String"
+			},
+			{
+				"name": "ca_suite_number",
+				"type": "String"
+			},
+			{
+				"name": "ca_city",
+				"type": "String"
+			},
+			{
+				"name": "ca_county",
+				"type": "String"
+			},
+			{
+				"name": "ca_state",
+				"type": "String"
+			},
+			{
+				"name": "ca_zip",
+				"type": "String"
+			},
+			{
+				"name": "ca_country",
+				"type": "String"
+			},
+			{
+				"name": "ca_gmt_offset",
+				"type": "String"
+			},
+			{
+				"name": "ca_location_type",
+				"type": "String"
+			}
+		]
+	}
+}

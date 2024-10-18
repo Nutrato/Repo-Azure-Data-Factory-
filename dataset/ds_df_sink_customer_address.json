@@ -1,0 +1,72 @@
+{
+	"name": "ds_df_sink_customer_address",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_onprem_sql_server_AdventureWorksLT2022",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ca_address_sk",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "ca_address_id",
+				"type": "char"
+			},
+			{
+				"name": "ca_street_number",
+				"type": "char"
+			},
+			{
+				"name": "ca_street_name",
+				"type": "varchar"
+			},
+			{
+				"name": "ca_street_type",
+				"type": "char"
+			},
+			{
+				"name": "ca_suite_number",
+				"type": "char"
+			},
+			{
+				"name": "ca_city",
+				"type": "varchar"
+			},
+			{
+				"name": "ca_county",
+				"type": "varchar"
+			},
+			{
+				"name": "ca_state",
+				"type": "char"
+			},
+			{
+				"name": "ca_zip",
+				"type": "char"
+			},
+			{
+				"name": "ca_country",
+				"type": "varchar"
+			},
+			{
+				"name": "ca_gmt_offset",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
+			},
+			{
+				"name": "ca_location_type",
+				"type": "char"
+			}
+		],
+		"typeProperties": {
+			"schema": "Test",
+			"table": "customer_address"
+		}
+	}
+}
