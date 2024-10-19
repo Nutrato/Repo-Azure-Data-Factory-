@@ -9,13 +9,24 @@
 						"referenceName": "ds_src_log_file",
 						"type": "DatasetReference"
 					},
-					"name": "logfile"
+					"name": "sourcedummy"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_sink_logfile",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -28,16 +39,39 @@
 				"     DataFactoryName as string,",
 				"     file_name as string",
 				"}",
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          dummy as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> logfile",
-				"logfile derive(PipelineName = $PipelineName,",
+				"     ignoreNoFilesFound: false) ~> sourcedummy",
+				"sourcedummy derive(PipelineName = $PipelineName,",
 				"          PipelineRunId = $PipelineRunId,",
 				"          TriggerId = $TriggerId,",
 				"          TriggerName = $TriggerName,",
 				"          TriggerTime = $TriggerTime,",
 				"          DataFactoryName = $DataFactoryName,",
-				"          filename = $file_name) ~> derivedColumn1"
+				"          fileNmae = $file_name) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          PipelineName,",
+				"          PipelineRunId,",
+				"          TriggerId,",
+				"          TriggerName,",
+				"          TriggerTime,",
+				"          DataFactoryName,",
+				"          fileNmae",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:[($file_name)],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
