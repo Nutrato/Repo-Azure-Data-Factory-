@@ -25,7 +25,11 @@
 						"referenceName": "ds_sink_log_append",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sink1",
+					"rejectedDataLinkedService": {
+						"referenceName": "ls_adls_gen2",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [
@@ -64,16 +68,14 @@
 				"          TriggerId = $TriggerId,",
 				"          TriggerName = $TriggerName,",
 				"          TriggerTime = $TriggerTime,",
-				"          DataFactoryName = $DataFactoryName,",
-				"          fileNmae = $file_name) ~> derivedColumn1",
+				"          DataFactoryName = $DataFactoryName) ~> derivedColumn1",
 				"derivedColumn1 select(mapColumn(",
 				"          PipelineName,",
 				"          PipelineRunId,",
 				"          TriggerId,",
 				"          TriggerName,",
 				"          TriggerTime,",
-				"          DataFactoryName,",
-				"          fileNmae",
+				"          DataFactoryName",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
@@ -87,6 +89,14 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1,",
+				"     mapColumn(",
+				"          PipelineName,",
+				"          PipelineRunId,",
+				"          TriggerId,",
+				"          TriggerName,",
+				"          TriggerTime,",
+				"          DataFactoryName",
+				"     ),",
 				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
