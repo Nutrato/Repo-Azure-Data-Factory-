@@ -1,16 +1,25 @@
 {
-	"name": "ds_src_log_file",
+	"name": "ds_log_append",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_adls_gen2",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"fileName": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "file_01.txt",
+				"fileName": {
+					"value": "@dataset().fileName",
+					"type": "Expression"
+				},
+				"folderPath": "output",
 				"fileSystem": "storage01"
 			},
 			"columnDelimiter": ",",
