@@ -97,7 +97,28 @@
 							"type": "ParquetReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "SqlServerSink",
+						"preCopyScript": {
+							"value": "@concat('truncate table dbo.stg_',pipeline().parameters.source_table_name)",
+							"type": "Expression"
+						},
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": {
+							"value": "@concat('dbo.stg_',pipeline().parameters.source_table_name)",
+							"type": "Expression"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
@@ -107,8 +128,18 @@
 							"folder_name": {
 								"value": "@pipeline().parameters.source_table_name",
 								"type": "Expression"
+							},
+							"file_name": {
+								"value": "@pipeline().parameters.source_table_name",
+								"type": "Expression"
 							}
 						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_sink_stg",
+						"type": "DatasetReference"
 					}
 				]
 			}

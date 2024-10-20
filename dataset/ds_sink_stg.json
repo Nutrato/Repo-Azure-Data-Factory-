@@ -1,0 +1,12 @@
+{
+	"name": "ds_sink_stg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_onprem_sql_server_AdventureWorksLT2022",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
