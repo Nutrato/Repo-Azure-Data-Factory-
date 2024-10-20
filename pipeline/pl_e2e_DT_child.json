@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "CopyData2ADLS",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -59,6 +59,52 @@
 								"type": "Expression"
 							},
 							"file_name": {
+								"value": "@pipeline().parameters.source_table_name",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "CopyData2stg",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "CopyData2ADLS",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": false,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "ParquetReadSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_source_stg",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder_name": {
 								"value": "@pipeline().parameters.source_table_name",
 								"type": "Expression"
 							}

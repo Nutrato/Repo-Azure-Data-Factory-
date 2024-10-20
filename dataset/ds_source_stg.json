@@ -1,5 +1,5 @@
 {
-	"name": "ds_landing_sink",
+	"name": "ds_source_stg",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_adls_gen2",
@@ -25,8 +25,7 @@
 				"folderPath": {
 					"value": "@concat('landing/',dataset().folder_name)",
 					"type": "Expression"
-				},
-				"fileSystem": "rawdata01"
+				}
 			},
 			"compressionCodec": "snappy"
 		},
