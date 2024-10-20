@@ -23,9 +23,10 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@concat('landing/',dataset().folder_name,'/')",
+					"value": "@concat('landing/',dataset().folder_name)",
 					"type": "Expression"
-				}
+				},
+				"fileSystem": "rawdata01"
 			},
 			"compressionCodec": "snappy"
 		},
