@@ -5,8 +5,19 @@
 			"referenceName": "ls_onprem_sql_server_AdventureWorksLT2022",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"table_name": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "dbo",
+				"type": "Expression"
+			}
+		}
 	}
 }

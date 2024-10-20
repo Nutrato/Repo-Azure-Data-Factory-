@@ -100,15 +100,11 @@
 					"sink": {
 						"type": "SqlServerSink",
 						"preCopyScript": {
-							"value": "@concat('truncate table dbo.stg_',pipeline().parameters.source_table_name)",
+							"value": "@{concat('truncate table dbo.stg_',pipeline().parameters.source_table_name)}",
 							"type": "Expression"
 						},
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false,
-						"tableOption": {
-							"value": "@concat('dbo.stg_',pipeline().parameters.source_table_name)",
-							"type": "Expression"
-						}
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -139,7 +135,13 @@
 				"outputs": [
 					{
 						"referenceName": "ds_sink_stg",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"table_name": {
+								"value": "@concat('dbo.stg_',pipeline().parameters.source_table_name)",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
