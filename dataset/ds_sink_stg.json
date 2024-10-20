@@ -14,8 +14,9 @@
 		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": {
-				"value": "dbo",
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().table_name",
 				"type": "Expression"
 			}
 		}
