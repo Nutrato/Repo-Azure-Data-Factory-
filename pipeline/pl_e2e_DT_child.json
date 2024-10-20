@@ -1,0 +1,95 @@
+{
+	"name": "pl_e2e_DT_child",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": {
+							"value": "@concat('select * from SalesLT.',\npipeline().parameters.source_table_name)",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_source_on_prem",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_landing_sink",
+						"type": "DatasetReference",
+						"parameters": {
+							"folder_name": {
+								"value": "@pipeline().parameters.source_table_name",
+								"type": "Expression"
+							},
+							"file_name": {
+								"value": "@pipeline().parameters.source_table_name",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"name": {
+				"type": "string"
+			},
+			"source_db_name": {
+				"type": "string"
+			},
+			"source_table_name": {
+				"type": "string"
+			},
+			"landing_zone_path": {
+				"type": "string"
+			},
+			"landing_zone_folder": {
+				"type": "string"
+			},
+			"landing_zone_file": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "End2EndDatatransfer"
+		},
+		"annotations": []
+	}
+}

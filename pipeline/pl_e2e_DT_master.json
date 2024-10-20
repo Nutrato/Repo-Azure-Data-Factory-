@@ -1,0 +1,100 @@
+{
+	"name": "pl_e2e_DT_master",
+	"properties": {
+		"activities": [
+			{
+				"name": "GetJobDetails",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "select * from dbo.job_details",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "ds_onprem_sql_job_details",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "GetJobDetails",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GetJobDetails').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Execute child Pipeline",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "pl_e2e_DT_child",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"name": {
+										"value": "@item().name",
+										"type": "Expression"
+									},
+									"source_db_name": {
+										"value": "@item().source_db_name",
+										"type": "Expression"
+									},
+									"source_table_name": {
+										"value": "@item().source_table_name",
+										"type": "Expression"
+									},
+									"landing_zone_path": {
+										"value": "@item().landing_zone_path",
+										"type": "Expression"
+									},
+									"landing_zone_folder": {
+										"value": "@item().landing_zone_folder",
+										"type": "Expression"
+									},
+									"landing_zone_file": {
+										"value": "@item().landing_zone_file",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"folder": {
+			"name": "End2EndDatatransfer"
+		},
+		"annotations": []
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"name": "ds_source_on_prem",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_onprem_sql_server_AdventureWorksLT2022",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
