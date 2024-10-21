@@ -165,7 +165,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[StoreADFSystemVariables]",
 					"storedProcedureParameters": {
 						"dataFactoryName": {
 							"value": {
@@ -267,6 +266,12 @@
 					"secureInput": false
 				},
 				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": {
+						"value": "@concat('dbo.',pipeline().parameters.stored_proc_name)",
+						"type": "Expression"
+					}
+				},
 				"linkedServiceName": {
 					"referenceName": "ls_onprem_sql_server_AdventureWorksLT2022",
 					"type": "LinkedServiceReference"
