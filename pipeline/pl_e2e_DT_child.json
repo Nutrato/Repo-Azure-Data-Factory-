@@ -165,6 +165,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"storedProcedureName": "[dbo].[StoreADFSystemVariables]",
 					"storedProcedureParameters": {
 						"dataFactoryName": {
 							"value": {
