@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "select * from dbo.job_details",
+						"sqlReaderQuery": "select * from dbo.job_details where IsActive = 1",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -83,6 +83,10 @@
 									},
 									"landing_zone_file": {
 										"value": "@item().landing_zone_file",
+										"type": "Expression"
+									},
+									"stored_proc_name": {
+										"value": "@item().stored_proc_name",
 										"type": "Expression"
 									}
 								}
