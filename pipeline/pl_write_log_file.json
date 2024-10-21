@@ -46,6 +46,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -84,48 +85,6 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"dataflow": {
-									"referenceName": "df_create_log_file",
-									"type": "DataFlowReference",
-									"parameters": {
-										"PipelineName": {
-											"value": "'@{pipeline().Pipeline}'",
-											"type": "Expression"
-										},
-										"PipelineRunId": {
-											"value": "'@{pipeline().RunId}'",
-											"type": "Expression"
-										},
-										"TriggerId": {
-											"value": "'@{pipeline().TriggerId}'",
-											"type": "Expression"
-										},
-										"TriggerName": {
-											"value": "'@{pipeline().TriggerName}'",
-											"type": "Expression"
-										},
-										"TriggerTime": {
-											"value": "'@{pipeline().TriggerTime}'",
-											"type": "Expression"
-										},
-										"DataFactoryName": {
-											"value": "'@{pipeline().DataFactory}'",
-											"type": "Expression"
-										},
-										"file_name": {
-											"value": "'@{variables('file_name')}'",
-											"type": "Expression"
-										}
-									},
-									"datasetParameters": {
-										"sink1": {
-											"file_name": {
-												"value": "@variables('file_name')",
-												"type": "Expression"
-											}
-										}
-									}
-								},
 								"compute": {
 									"coreCount": 8,
 									"computeType": "General"
@@ -148,54 +107,6 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"dataflow": {
-									"referenceName": "df_create_log_file_append",
-									"type": "DataFlowReference",
-									"parameters": {
-										"PipelineName": {
-											"value": "'@{pipeline().Pipeline}'",
-											"type": "Expression"
-										},
-										"PipelineRunId": {
-											"value": "'@{pipeline().RunId}'",
-											"type": "Expression"
-										},
-										"TriggerId": {
-											"value": "'@{pipeline().TriggerId}'",
-											"type": "Expression"
-										},
-										"TriggerTime": {
-											"value": "'@{pipeline().TriggerTime}'",
-											"type": "Expression"
-										},
-										"DataFactoryName": {
-											"value": "'@{pipeline().DataFactory}'",
-											"type": "Expression"
-										},
-										"file_name": {
-											"value": "'@{variables('file_name')}'",
-											"type": "Expression"
-										},
-										"TriggerName": {
-											"value": "'@{pipeline().TriggerName}'",
-											"type": "Expression"
-										}
-									},
-									"datasetParameters": {
-										"logappend": {
-											"fileName": {
-												"value": "@variables('file_name')",
-												"type": "Expression"
-											}
-										},
-										"sink1": {
-											"file_name": {
-												"value": "@variables('file_name')",
-												"type": "Expression"
-											}
-										}
-									}
-								},
 								"compute": {
 									"coreCount": 8,
 									"computeType": "General"
