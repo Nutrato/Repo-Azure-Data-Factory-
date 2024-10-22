@@ -1,0 +1,43 @@
+{
+	"name": "pl_fail",
+	"properties": {
+		"activities": [
+			{
+				"name": "Fail1",
+				"type": "Fail",
+				"dependsOn": [],
+				"userProperties": []
+			},
+			{
+				"name": "WebHook1",
+				"type": "WebHook",
+				"dependsOn": [
+					{
+						"activity": "Fail1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-21.southindia.logic.azure.com:443/workflows/84fa616792a441aa8c5ed3b83f2ed1f9/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=vpzN3qG9RnciDDyKGfzUtfEO2D78yK_tVXuD7jDN29g",
+					"method": "POST",
+					"headers": {
+						"content": "application/json"
+					},
+					"body": {
+						"value": "{\n    \"pipelineName\": \"@{pipeline().Pipeline}\",\n    \"DataFactoryName\": \"@{pipeline().DataFactory}\",\n    \"triggerName\": \"@{pipeline().TriggerName}\",\n    \"TriggerID\": \"@{pipeline().TriggerId}\",\n    \"errorMsg\": \"@{activity('Fail1').error.Message}\"\n}\n",
+						"type": "Expression"
+					},
+					"timeout": "00:10:00"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
