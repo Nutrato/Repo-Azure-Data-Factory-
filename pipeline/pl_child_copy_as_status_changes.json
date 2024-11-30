@@ -1,0 +1,63 @@
+{
+	"name": "pl_child_copy_as_status_changes",
+	"properties": {
+		"activities": [
+			{
+				"name": "Until1",
+				"type": "Until",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@bool(variables('Flag'))",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Lookup_file_status",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "SqlServerSource",
+									"sqlReaderQuery": {
+										"value": "select status from file_status where file_name = '@{pipeline().parameters.FileName}'",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"dataset": {
+									"referenceName": "ds_fileStatus",
+									"type": "DatasetReference"
+								},
+								"firstRowOnly": true
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
+			}
+		],
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"Flag": {
+				"type": "String",
+				"defaultValue": "False"
+			}
+		},
+		"annotations": []
+	}
+}
